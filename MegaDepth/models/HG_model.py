@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import os
 from torch.autograd import Variable
-from .base_model import BaseModel
+from base_model import BaseModel
 import sys
 import pytorch_DIW_scratch
 

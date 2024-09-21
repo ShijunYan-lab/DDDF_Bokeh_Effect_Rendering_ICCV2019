@@ -1,7 +1,7 @@
-from model import common
 
 import torch.nn as nn
 import torchvision.models as models
+from fvcore.nn import FlopCountAnalysis
 
 def make_model(args, parent=False):
     return sm_space2depth_densedecoder_instancenorm_seg_depth_beginning_dynamic_filter_separatedecoder(args)
@@ -848,7 +848,14 @@ class sm_space2depth_densedecoder_instancenorm_seg_depth_beginning_dynamic_filte
         dehaze=(dehaze+avg+out)[:,:,crop1:crop1+shapeexx[2],crop2:crop2+shapeexx[3]]        
         return dehaze      
 
-        
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+model = sm_space2depth_densedecoder_instancenorm_seg_depth_beginning_dynamic_filter_separatedecoder().cuda()  # 替换为你的模型类
+input = torch.randn(1, 3, 256, 256).cuda()  # 例如输入是 [batch_size, channels, height, width]
+print(f"Model has {count_parameters(model)} trainable parameters")
+flops = FlopCountAnalysis(model, input)
+print(f"FLOPs: {flops.total()}")
         
 
 

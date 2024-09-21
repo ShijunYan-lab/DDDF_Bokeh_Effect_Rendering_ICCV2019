@@ -51,7 +51,7 @@ def test_simple(model):
 
 
         pred_inv_depth = 1/pred_depth
-        pred_inv_depth = pred_inv_depth.data.cpu().numpy()
+        pred_inv_depth = pred_inv_depth.data.gpu().numpy()
         pred_inv_depth = pred_inv_depth/np.amax(pred_inv_depth)
 
         pred_inv_depth = pred_inv_depth[:h1, :w1]

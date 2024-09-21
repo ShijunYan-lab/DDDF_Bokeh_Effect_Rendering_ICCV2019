@@ -54,5 +54,5 @@ class BaseModel():
         return model
         # network.load_state_dict(torch.load(save_path))
 
-    def update_learning_rate():
+    def update_learning_rate(self):
         pass
